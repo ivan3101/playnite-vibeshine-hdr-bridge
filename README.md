@@ -187,8 +187,11 @@ dotnet test src/SunshineLibrary.HdrBridge/Tests/SunshineLibrary.Tests.csproj -c 
 ./scripts/build.ps1
 ```
 
-GitHub Actions runs the Windows build and uploads both `.pext` packages. This
-working tree is intentionally left uncommitted and unpublished.
+GitHub Actions runs the Windows build and test suites on every push and pull
+request. Every successful push to `main` creates a uniquely tagged automated
+prerelease containing both `.pext` packages and a copy of this README. Pull
+requests build and test the project but never publish releases. Versioned stable
+releases such as `v0.2.0` are created separately after validation.
 
 For architecture, code ownership, migration behavior, security, testing, and
 handoff details, see [`docs/HANDOFF.md`](docs/HANDOFF.md). The reviewed refactor
