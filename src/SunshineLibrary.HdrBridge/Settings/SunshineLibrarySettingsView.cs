@@ -1,6 +1,7 @@
 using Playnite.SDK;
 using SunshineLibrary.Models;
 using SunshineLibrary.Services.Clients;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
