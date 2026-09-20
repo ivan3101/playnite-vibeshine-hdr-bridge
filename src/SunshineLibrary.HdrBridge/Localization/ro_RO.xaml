@@ -1,0 +1,309 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Plugin identity -->
+    <sys:String x:Key="LOC_SunshineLibrary_Name">SunshineLibrary Vibeshine HDR Bridge</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Description">Stream Vibeshine applications through Moonlight with deterministic HDR automation.</sys:String>
+
+    <!-- Main menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_MenuSection">Sunshine</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ResyncAll">Resincronizează toate gazdele</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_TestClient">Testează clientul de streaming</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_HostStatus">Stare gazdă…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_CleanOrphans">Curăță suprascrierile orfane</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_NoHosts">Nicio gazdă configurată. Adaugă o gazdă din setările pluginului.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_Ok">online ({0}, {1} aplicații)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_Fail">inaccesibil (a eșuat la {0})</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CleanOrphans_Done">S-au curățat {0} suprascriere(i) orfane din totalul de {1} intrări.</sys:String>
+
+    <!-- Game menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_StreamingSettings">Setări de streaming…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverrides">Șterge suprascrierile de streaming</sys:String>
+
+    <!-- Play action -->
+    <sys:String x:Key="LOC_SunshineLibrary_PlayAction_Stream">Transmite cu Moonlight</sys:String>
+
+    <!-- Source label -->
+    <sys:String x:Key="LOC_SunshineLibrary_SourcePrefix">Sunshine: {0}</sys:String>
+
+    <!-- Feature tag -->
+    <sys:String x:Key="LOC_SunshineLibrary_Feature_GameStreaming">Streaming de jocuri</sys:String>
+
+    <!-- Notifications: sync -->
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_Success">{0}: {1} jocuri disponibile</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_EmptyYieldGuard">{0}: conectat, dar nu a returnat nicio aplicație, așa că jocurile acestei gazde au rămas neatinse. Verifică lista de aplicații a gazdei și filtrele de excludere, apoi folosește „Elimină jocurile orfane…” dacă chiar au fost eliminate toate.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_NoChanges">{0}: nicio modificare</sys:String>
+
+    <!-- Notifications: host errors -->
+    <sys:String x:Key="LOC_SunshineLibrary_Error_Unreachable">{0}: gazdă inaccesibilă. Se afișează jocurile din cache.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_Timeout">{0}: cererea a expirat. Se afișează jocurile din cache.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_AuthFailed">{0}: autentificarea a eșuat. Actualizează acreditările în setări.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_CertMismatch_Title">{0}: certificat modificat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_CertMismatch_Body">Certificatul pentru {0} s-a schimbat. Acest lucru se poate întâmpla dacă Sunshine a fost reinstalat, sau poate însemna că cineva interceptează conexiunea. Deschide setările pentru a revizui și a fixa din nou.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_MissingPin">{0}: certificat nefixat. Configurează această gazdă în setări pentru a continua sincronizarea.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ServerError">{0}: serverul a returnat o eroare ({1}).</sys:String>
+
+    <!-- Notifications: client -->
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ClientNotInstalled">Moonlight nu este instalat sau calea configurată este invalidă. Instalează Moonlight și încearcă din nou.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ClientLaunchFailed">Nu s-a putut lansa Moonlight: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Info_ClientInstalled">Moonlight găsit la {0}</sys:String>
+
+    <!-- Pre-launch warnings -->
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_HdrWithH264">HDR necesită HEVC sau AV1, dar codec-ul selectat este H.264. HDR va fi dezactivat pentru această sesiune.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_BitrateOutOfRange">Bitrate-ul {0} Kbps este în afara intervalului valid (500–500000).</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_FpsOutOfRange">FPS {0} este în afara intervalului valid (10–480).</sys:String>
+
+    <!-- Settings: tabs -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Hosts">Gazde</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Client">Client de streaming</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_General">General</sys:String>
+
+    <!-- Settings: Hosts tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Add">Adaugă gazdă…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Edit">Editează selecția…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Remove">Elimină selecția</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_RemoveConfirm">Elimini gazda "{0}" din SunshineLibrary? Acreditarea și cache-ul specifice gazdei vor fi de asemenea șterse. Intrările din biblioteca Playnite pentru această gazdă vor deveni dezinstalate la următoarea sincronizare.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Label">Etichetă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Address">Adresă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Port">Port</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Flavor">Variantă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Enabled">Activat</sys:String>
+
+    <!-- Settings: Client tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Heading">Calea executabilului Moonlight</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Browse">Răsfoiește…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Browse_Title">Selectează moonlight-qt.exe</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_PathHelp">Lasă gol pentru a detecta automat locațiile standard de instalare (Program Files, LocalAppData).</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Test">Testează clientul de streaming</sys:String>
+
+    <!-- Settings: General tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_NotificationMode">Notificări</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Always">Întotdeauna — afișează starea sincronizării și erorile</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_OnUpdateOnly">Doar la modificări — liniștit când nu se schimbă nimic</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Never">Niciodată — afișează doar notificările critice de securitate</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Help">Evenimentele critice de securitate și de lansare (eșec de autentificare, nepotrivire de certificat, lipsa fixării, client indisponibil) sunt întotdeauna afișate, indiferent de această setare.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_DangerZone">Zonă periculoasă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAll">Revocă toate acreditările stocate</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllConfirm">Ștergi toate parolele și fixările de certificat stocate? Va trebui să reintroduci acreditările și să reconfirmi amprenta certificatului fiecărei gazde la următoarea sincronizare.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllDone">Toate acreditările stocate au fost revocate.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllHelp">Folosește această opțiune dacă suspectezi că un fișier de setări a fost copiat sau dacă vrei să începi de la zero. Nu elimină gazdele din listă — doar parolele stocate.</sys:String>
+
+    <!-- Add/Edit Host dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TitleAdd">Adaugă gazdă Sunshine</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TitleEdit">Editează gazda Sunshine</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Label">Etichetă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Address">Adresă (nume de gazdă sau IP)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Port">Port</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AdminUser">Nume de utilizator administrator</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AdminPassword">Parolă administrator</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ApiToken">API Token</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ApiToken_Help">Vibeshine/Apollo: authenticate with a Bearer token instead of username/password. Generate in the web console (Admin → API Tokens). Required scopes: GET /api/config, /api/playnite/status, /api/apps, /api/playnite/games; POST /api/playnite/force_sync, /api/apps/close.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ServerType">Server type</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ServerType_AutoDetect">Auto-detect</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Enabled">Activat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ExcludedAppNames">Nume de aplicații excluse (unul pe linie)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ExcludedAppNames_Help">Aplicațiile care corespund acestor nume (fără a ține cont de majuscule) nu vor apărea în Playnite. Inițializat cu cele predefinite din Sunshine (Desktop, Steam Big Picture, Terminate) — elimină-le pe cele pe care vrei să le păstrezi.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestConnection">Testează conexiunea</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Testing">Se testează…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestOk">Testul a reușit. Variantă: {0}. Aplicații găsite: {1}.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestFailedAt">Testul a eșuat la pasul {0}: {1}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_RunTestFirst">Rulează mai întâi "Testează conexiunea" pentru ca pluginul să poată observa amprenta certificatului gazdei.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_PinDeclined">Certificatul nu a fost confirmat. Gazda nu a fost salvată.</sys:String>
+
+    <!-- Cert pin dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Title">Confirmă certificatul</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Heading">Ai încredere în certificatul pentru "{0}"?</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_BodyFirstConnect">Sunshine folosește certificate autosemnate. Fixează amprenta de mai jos astfel încât conexiunile viitoare să fie verificate față de ea. Dacă nu tu ai configurat această gazdă, răspunde Nu.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_BodyRepin">Amprenta certificatului pentru această gazdă s-a schimbat. Acest lucru se poate întâmpla dacă Sunshine a fost reinstalat — sau poate însemna că cineva interceptează conexiunea. Confirmă noua amprentă doar dacă ai reinstalat recent gazda.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Fingerprint">Amprentă SHA-256</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_OldFingerprint">Amprentă anterior de încredere</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_NewFingerprint">Amprentă nouă observată</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Subject">Subiect:</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_NotAfter">Valabil până la:</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Guidance">Verifică dacă se potrivește cu amprenta afișată la</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Trust">Ai încredere în acest certificat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Repin">Refixează pe noul certificat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Cancel">Anulează</sys:String>
+
+    <!-- Validation -->
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_LabelRequired">Eticheta este obligatorie.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_AddressRequired">Adresa este obligatorie.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_AddressChars">Adresa nu poate conține scheme, căi, spații albe sau caractere de shell. Folosește doar un nume de gazdă sau IP.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_PortRange">Portul trebuie să fie între 1 și 65535.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_MoonlightPathInvalid">Executabilul Moonlight nu a fost găsit la calea configurată.</sys:String>
+
+    <!-- Common -->
+    <sys:String x:Key="LOC_SunshineLibrary_Common_Ok">OK</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Common_Cancel">Anulează</sys:String>
+
+    <!-- Game context menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_BulkEdit">Editează setările de streaming pentru {0} jocuri selectate…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverridesSelection">Șterge suprascrierile de streaming pentru {0} jocuri selectate</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverridesConfirm">Ștergi suprascrierile de streaming pentru {0} jocuri selectate? Această acțiune nu poate fi anulată.</sys:String>
+
+    <!-- Per-game override dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Title">Setări de streaming — {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Display">Afișaj</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Encoding">Codificare</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Performance">Performanță</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Output">Ieșire</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Session">Sesiune</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Advanced">Avansat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_ClearAll">Șterge toate suprascrierile</sys:String>
+
+    <!-- Per-game override field labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Resolution">Rezoluție</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Fps">Cadre pe secundă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Hdr">HDR</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Bitrate">Bitrate</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VideoCodec">Codec video</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VideoDecoder">Decodificator video</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Yuv444">Cromă YUV 4:4:4</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_FramePacing">Ritmarea cadrelor</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_GameOptimization">Optimizarea jocului</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VSync">V-Sync</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_DisplayMode">Mod de afișare</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_AudioConfig">Configurare audio</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_AudioOnHost">Audio pe gazdă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_MuteOnFocusLoss">Dezactivare sunet la pierderea focusului</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_KeepAwake">Menține sistemul activ</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_CaptureSystemKeys">Captură taste de sistem</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ExtraArgs">Argumente suplimentare pentru Moonlight</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ExtraArgs_Help">Avansat. Adăugate textual la linia de comandă moonlight-qt. Separate prin spații albe — fără ghilimele de shell.</sys:String>
+
+    <!-- Override mode labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Inherit">Moștenește</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Auto">Automat (la fel ca clientul)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Static">Valoare fixă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Hdr_On">Forțează activat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Hdr_Off">Forțează dezactivat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_OverrideField">Suprascrie</sys:String>
+
+    <!-- Fallback hint labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Auto">Moștenește: detectare automată de pe afișajul clientului</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Static">Moștenește: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Bitrate">Moștenește: {0} Kbps</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Codec">Moștenește: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_DisplayMode">Moștenește: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_AudioConfig">Moștenește: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Bool">Moștenește: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_MoonlightDefault">Moștenește: orice este configurat să folosească Moonlight</sys:String>
+
+    <!-- Bulk dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Title">Editare în masă a setărilor de streaming</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Heading">Aplică setările de streaming la {0} jocuri selectate</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Help">Bifează câmpurile pe care vrei să le aplici. Câmpurile nebifate rămân neatinse la fiecare joc. Pentru a șterge complet suprascrierile, folosește "Șterge suprascrierile de streaming" din meniul de click dreapta.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Apply">Aplică la {0} jocuri</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_ApplyField">Aplică {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_NothingSelected">Bifează cel puțin un câmp pentru a aplica, sau apasă Anulează.</sys:String>
+
+
+    <!-- Main menu: orphan removal -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_RemoveOrphanGames">Elimină jocurile orfane…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_RefreshVibeshineLibrary">Reîmprospătează biblioteca gazdei Vibeshine…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_None">Nu s-au găsit jocuri orfane. Toate intrările din bibliotecă corespund aplicațiilor existente pe gazdele accesibile.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_Confirm">Elimini {0} joc(uri) orfane din bibliotecă? Timpul de joc, suprascrierile de streaming per joc și copertele vor fi șterse definitiv. Gazdele momentan offline sunt omise — jocurile lor nu sunt niciodată eliminate automat.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_Done">S-au eliminat {0} joc(uri) orfane.</sys:String>
+
+    <!-- Settings: General tab — orphan removal -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AutoRemoveOrphans">Elimină automat jocurile orfane la sincronizare</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AutoRemoveOrphans_Help">Când este activat, jocurile care nu mai există pe nicio gazdă accesibilă sunt șterse din Playnite la următoarea sincronizare. Dezactivat implicit — jocurile orfane sunt marcate ca dezinstalate, păstrând timpul de joc și suprascrierile. Gazdele cu rezervă din cache (offline) nu sunt niciodată eliminate, indiferent de această setare.</sys:String>
+
+    <!-- Settings: tabs -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Defaults">Valori implicite de streaming</sys:String>
+
+    <!-- Add/Edit Host dialog: tabs and defaults -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Tab_Host">Gazdă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Tab_Defaults">Valori implicite de streaming</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHeading">Valori implicite de streaming pentru &quot;{0}&quot;</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHeadingUnnamed">această gazdă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHelp">Aceste valori se aplică fiecărui joc transmis de pe această gazdă. Suprascrierile per joc (click dreapta pe un joc) au prioritate. Câmpurile setate pe Moștenește trec la valorile implicite globale de streaming, apoi la valorile configurate ale Moonlight.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestCancelled">Test anulat.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestStepStatus">{0}: {1}</sys:String>
+
+    <!-- Add/Edit Host dialog: per-host orphan field -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans">Elimină automat jocurile orfane</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Help">Suprascriere per gazdă pentru ștergerea jocurilor orfane la sincronizare. &quot;Moștenește&quot; preia setarea globală din fila General.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Inherit">Moștenește din setarea globală</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Delete">Șterge jocurile orfane</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Keep">Păstrează jocurile orfane (marchează ca dezinstalate)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Enabled_Help">Dezactivează pentru a păstra această gazdă în setări, dar a o omite în timpul sincronizărilor bibliotecii. Util pentru gazdele care sunt adesea offline.</sys:String>
+
+    <!-- Settings: Client tab — auto-detect -->
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect">Detectare automată</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_None">Moonlight nu a fost găsit în PATH, Scoop, Winget sau în nicio locație standard de instalare. Instalează Moonlight sau răsfoiește până la executabilul său.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_FoundOne">Moonlight găsit la:&#x0a;{0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_Pick">S-au găsit mai multe instalări Moonlight. Selectează una:</sys:String>
+
+    <!-- Settings: Defaults tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_Heading">Opțiuni implicite Moonlight</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_Help">Aceste valori se aplică fiecărui joc transmis. Valorile implicite per gazdă (fila Gazde) și suprascrierile per joc (click dreapta pe un joc) au prioritate față de acestea. Câmpurile setate pe Moștenește trec la valorile configurate proprii ale Moonlight.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_ResetToBuiltin">Resetează la valorile implicite predefinite</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_ResetConfirm">Resetezi toate valorile implicite globale de streaming? Rezoluția, FPS și HDR vor reveni la Automat (la fel ca clientul); toate celelalte câmpuri vor reveni la Moștenește.</sys:String>
+
+    <!-- Per-game override field labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ShowStats">Suprapunere performanță</sys:String>
+
+    <!-- Fallback hint labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_BitrateAuto">Calculat automat din rezoluție × fps (ex. 1080p/60 → 20 Mbps, 4K/60 → 80 Mbps; YUV 4:4:4 dublează această valoare)</sys:String>
+
+    <!-- Game context menu: view effective settings -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ViewEffectiveSettings">Vezi setările de streaming efective…</sys:String>
+
+    <!-- Live preview strip -->
+    <sys:String x:Key="LOC_SunshineLibrary_Preview_Label">Linie de comandă efectivă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Preview_NoDisplayHint">Informații afișaj indisponibile — rezoluția Auto, fps și HDR pot diferi la lansare.</sys:String>
+
+    <!-- Effective settings dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettingsDialog_Title">Setări de streaming efective — {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_HostGone">Gazda pentru acest joc nu mai este configurată. Adaugă gazda înapoi în setări și încearcă din nou.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_DisplayUnavailable">Informații afișaj indisponibile — câmpurile rezoluție Auto, fps și HDR sunt afișate fără valorile lor rezolvate la rulare.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_CommandLine">Linie de comandă Moonlight efectivă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Copy">Copiază</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Close">Închide</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColField">Câmp</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColValue">Valoare</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColSource">Sursă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColNote">Notă de rulare</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_BuiltIn">predefinit</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_Global">global</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_Host">gazdă</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_PerGame">acest joc</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_AutoFromDisplay">→ {0} (din afișaj)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_AutoUnavailable">(afișaj indisponibil)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAuto">Calculat automat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAutoCalc">→ {0} Kbps (calcul auto)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_None">(niciunul)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_HostLabel">Host: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Bool_On">Pornit</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Bool_Off">Oprit</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAutoCalcApprox">→ {0} Kbps (est., display FPS unknown)</sys:String>
+
+    <!-- Imported-game platform and tags -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform">Platforma pentru jocurile importate</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform_Default">Implicit (PC (Windows))</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform_Help">Sub ce platformă Playnite sunt încadrate jocurile transmise în flux. Afișează platformele deja prezente în bibliotecă. Se aplică jocurilor nou importate; pentru cele existente folosiți acțiunea din meniul principal.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AdditionalTags">Etichete adăugate jocurilor importate</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AdditionalTags_Help">O etichetă pe linie, adăugată peste cele derivate din gazdă. Se aplică jocurilor nou importate; pentru cele existente folosiți acțiunea din meniul principal.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ApplyPlatformTags">Aplică platforma și etichetele la jocurile existente…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_Confirm">Se aplică la {0} joc(uri)?&#10;&#10;Platformă: {1}&#10;Etichete adăugate: {2}&#10;&#10;Etichetele existente se păstrează; platforma este înlocuită.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_Done">{0} din {1} joc(uri) actualizate.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_NoGames">Încă nu există jocuri din această bibliotecă.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_NothingConfigured">Nicio platformă sau etichetă configurată. Setați-le mai întâi în fila General.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_PlatformUnchanged">neschimbată</sys:String>
+
+    <!-- HDR Bridge fallback strings (translation contributions welcome) -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_HdrMetadata">HDR Automation</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Heading">Deterministic per-game HDR</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Help">Use the managed Playnite category synchronized by Vibeshine to request HDR or SDR for every game. Other saved Moonlight settings remain unchanged unless explicitly overridden.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Enabled">Use Vibeshine HDR category metadata</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Category">Managed HDR category</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_CategoryHelp">Must match the category configured in HDR Category Sync on the host. The default is HDR Bridge: HDR.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_ControlClient">Force Windows HDR on or off before Moonlight starts</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_RestoreSdr">Turn Windows HDR off after the stream ends or is cancelled</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_CancelOnFailure">Cancel launch if Windows cannot reach the requested HDR state</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_FailSafeHelp">Sunshine remains responsible for mirroring the Moonlight HDR request on the host. HDR-Auto remains independent for local host gaming.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_HdrCategoryRequired">Enter the managed HDR category name, or disable HDR automation.</sys:String>
+
+</ResourceDictionary>

@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-test-package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+          cache: true
+          cache-dependency-path: |
+            **/*.csproj
+
+      - name: Build, test, and package
+        shell: pwsh
+        run: ./scripts/build.ps1
+
+      - name: Upload Playnite packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: playnite-hdr-bridge
+          path: artifacts/*.pext
+          if-no-files-found: error

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:playnite-vibeshine-hdr-bridge:configuration:v1",
+  "title": "Playnite Vibeshine HDR Bridge conceptual configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["host", "client"],
+  "properties": {
+    "$schema": { "const": "urn:playnite-vibeshine-hdr-bridge:configuration:v1" },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hdrCategoryName", "forceHdrTag", "forceSdrTag", "hdrFeatureNames", "installedGamesOnly", "synchronizeOnLibraryChange"],
+      "properties": {
+        "hdrCategoryName": { "type": "string", "minLength": 1, "default": "HDR Bridge: HDR" },
+        "forceHdrTag": { "type": "string", "minLength": 1, "default": "Force HDR" },
+        "forceSdrTag": { "type": "string", "minLength": 1, "default": "Force SDR" },
+        "hdrFeatureNames": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true,
+          "default": ["HDR"]
+        },
+        "installedGamesOnly": { "type": "boolean", "default": true },
+        "synchronizeOnLibraryChange": { "type": "boolean", "default": true }
+      }
+    },
+    "client": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hdrCategoryName", "enabled", "controlClientHdr", "restoreClientToSdr", "cancelLaunchOnSwitchFailure"],
+      "properties": {
+        "hdrCategoryName": { "type": "string", "minLength": 1, "default": "HDR Bridge: HDR" },
+        "enabled": { "type": "boolean", "default": true },
+        "controlClientHdr": { "type": "boolean", "default": true },
+        "restoreClientToSdr": { "type": "boolean", "default": true },
+        "cancelLaunchOnSwitchFailure": { "type": "boolean", "default": true },
+        "serverType": { "const": "Vibeshine" },
+        "moonlightQualityOverrides": {
+          "description": "Leave properties absent to inherit Moonlight's saved settings.",
+          "type": "object"
+        }
+      }
+    }
+  }
+}

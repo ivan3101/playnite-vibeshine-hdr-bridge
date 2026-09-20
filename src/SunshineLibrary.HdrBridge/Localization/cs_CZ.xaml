@@ -1,0 +1,315 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Plugin identity -->
+    <sys:String x:Key="LOC_SunshineLibrary_Name">SunshineLibrary Vibeshine HDR Bridge</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Description">Stream Vibeshine applications through Moonlight with deterministic HDR automation.</sys:String>
+
+    <!-- Main menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_MenuSection">Sunshine</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ResyncAll">Znovu synchronizovat všechny hostitele</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_TestClient">Otestovat streamovacího klienta</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_HostStatus">Stav hostitele…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_CleanOrphans">Vyčistit osiřelá přepsání</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_NoHosts">Nejsou nakonfigurováni žádní hostitelé. Přidejte hostitele v nastavení pluginu.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_Ok">online ({0}, {1} aplikací)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_Fail">nedostupný (selhalo v kroku {0})</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CleanOrphans_Done">Vyčištěno {0} osiřelých přepsání z celkem {1} záznamů.</sys:String>
+
+    <!-- Game menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_StreamingSettings">Nastavení streamování…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverrides">Vymazat přepsání streamování</sys:String>
+
+    <!-- Play action -->
+    <sys:String x:Key="LOC_SunshineLibrary_PlayAction_Stream">Streamovat přes Moonlight</sys:String>
+
+    <!-- Source label -->
+    <sys:String x:Key="LOC_SunshineLibrary_SourcePrefix">Sunshine: {0}</sys:String>
+
+    <!-- Feature tag -->
+    <sys:String x:Key="LOC_SunshineLibrary_Feature_GameStreaming">Streamování her</sys:String>
+
+    <!-- Notifications: sync -->
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_Success">{0}: k dispozici {1} her</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_EmptyYieldGuard">{0}: připojeno, ale nevrátil žádné aplikace, jeho hry proto zůstaly beze změny. Zkontrolujte seznam aplikací na hostiteli a filtry vyloučení; pokud byly opravdu všechny odebrány, použijte „Odebrat osiřelé hry…“.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_NoChanges">{0}: beze změn</sys:String>
+
+    <!-- Notifications: host errors -->
+    <sys:String x:Key="LOC_SunshineLibrary_Error_Unreachable">{0}: hostitel je nedostupný. Zobrazují se hry z mezipaměti.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_Timeout">{0}: požadavek vypršel. Zobrazují se hry z mezipaměti.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_AuthFailed">{0}: ověření selhalo. Aktualizujte přihlašovací údaje v nastavení.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_CertMismatch_Title">{0}: certifikát se změnil</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_CertMismatch_Body">Certifikát pro hostitele {0} se změnil. Může to být způsobeno přeinstalací Sunshine, nebo to může znamenat, že někdo odposlouchává spojení. Otevřete nastavení pro kontrolu a nové připnutí.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_MissingPin">{0}: certifikát není připnutý. Nakonfigurujte tohoto hostitele v nastavení, aby bylo možné pokračovat v synchronizaci.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ServerError">{0}: server vrátil chybu ({1}).</sys:String>
+
+    <!-- Notifications: client -->
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ClientNotInstalled">Moonlight není nainstalován nebo je nakonfigurovaná cesta neplatná. Nainstalujte Moonlight a zkuste to znovu.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ClientLaunchFailed">Nepodařilo se spustit Moonlight: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Info_ClientInstalled">Moonlight nalezen v {0}</sys:String>
+
+    <!-- Pre-launch warnings -->
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_HdrWithH264">HDR vyžaduje HEVC nebo AV1, ale zvolený kodek je H.264. HDR bude pro tuto relaci zakázáno.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_BitrateOutOfRange">Datový tok {0} Kbps je mimo platný rozsah (500–500000).</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_FpsOutOfRange">FPS {0} je mimo platný rozsah (10–480).</sys:String>
+
+    <!-- Settings: tabs -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Hosts">Hostitelé</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Client">Streamovací klient</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_General">Obecné</sys:String>
+
+    <!-- Settings: Hosts tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Add">Přidat hostitele…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Edit">Upravit vybraného…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Remove">Odebrat vybraného</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_RemoveConfirm">Odebrat hostitele „{0}“ ze SunshineLibrary? Přihlašovací údaje a mezipaměť pro tohoto hostitele budou rovněž smazány. Záznamy v knihovně Playnite pro tohoto hostitele budou při další synchronizaci označeny jako neinstalované.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Label">Popisek</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Address">Adresa</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Port">Port</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Flavor">Varianta</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Enabled">Povoleno</sys:String>
+
+    <!-- Settings: Client tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Heading">Cesta k spustitelnému souboru Moonlight</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Browse">Procházet…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Browse_Title">Vyberte moonlight-qt.exe</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_PathHelp">Ponechte prázdné pro automatické vyhledání standardních umístění instalace (Program Files, LocalAppData).</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Test">Otestovat streamovacího klienta</sys:String>
+
+    <!-- Settings: General tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_NotificationMode">Oznámení</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Always">Vždy — zobrazovat stav synchronizace a chyby</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_OnUpdateOnly">Pouze při změnách — nerušit, pokud se nic nezměnilo</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Never">Nikdy — zobrazovat pouze bezpečnostně kritická oznámení</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Help">Bezpečnostně a pro spuštění kritické události (selhání ověření, neshoda certifikátu, chybějící připnutí, nedostupnost klienta) se zobrazují vždy bez ohledu na toto nastavení.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_DangerZone">Nebezpečná zóna</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAll">Odvolat všechny uložené přihlašovací údaje</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllConfirm">Smazat všechna uložená hesla a připnutí certifikátů? Při další synchronizaci budete muset znovu zadat přihlašovací údaje a znovu potvrdit otisk certifikátu každého hostitele.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllDone">Všechny uložené přihlašovací údaje byly odvolány.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllHelp">Použijte tuto možnost, pokud máte podezření, že byl soubor s nastavením zkopírován, nebo chcete začít znovu. Tato akce neodstraní hostitele ze seznamu — pouze uložená hesla.</sys:String>
+
+    <!-- Add/Edit Host dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TitleAdd">Přidat hostitele Sunshine</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TitleEdit">Upravit hostitele Sunshine</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Label">Popisek</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Address">Adresa (název hostitele nebo IP)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Port">Port</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AdminUser">Uživatelské jméno administrátora</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AdminPassword">Heslo administrátora</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ApiToken">API Token</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ApiToken_Help">Vibeshine/Apollo: authenticate with a Bearer token instead of username/password. Generate in the web console (Admin → API Tokens). Required scopes: GET /api/config, /api/playnite/status, /api/apps, /api/playnite/games; POST /api/playnite/force_sync, /api/apps/close.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ServerType">Server type</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ServerType_AutoDetect">Auto-detect</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Enabled">Povoleno</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ExcludedAppNames">Vyloučené názvy aplikací (jeden na řádek)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ExcludedAppNames_Help">Aplikace odpovídající těmto názvům (nerozlišuje velikost písmen) se v Playnite nezobrazí. Předvyplněno vestavěnými položkami Sunshine (Desktop, Steam Big Picture, Terminate) — odstraňte ty, které si chcete ponechat.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestConnection">Otestovat připojení</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Testing">Testování…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestOk">Test úspěšný. Varianta: {0}. Nalezeno aplikací: {1}.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestFailedAt">Test selhal v kroku {0}: {1}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_RunTestFirst">Nejprve spusťte „Otestovat připojení“, aby plugin mohl zjistit otisk certifikátu hostitele.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_PinDeclined">Certifikát nebyl potvrzen. Hostitel nebyl uložen.</sys:String>
+
+    <!-- Cert pin dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Title">Potvrdit certifikát</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Heading">Důvěřovat certifikátu pro „{0}“?</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_BodyFirstConnect">Sunshine používá certifikáty podepsané sebou samými. Připněte níže uvedený otisk, aby budoucí spojení byla proti němu ověřována. Pokud jste tohoto hostitele nenastavovali vy, zvolte Ne.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_BodyRepin">Otisk certifikátu tohoto hostitele se změnil. Může to být způsobeno přeinstalací Sunshine — nebo to může znamenat, že někdo odposlouchává spojení. Nový otisk potvrďte pouze tehdy, pokud jste hostitele nedávno přeinstalovali.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Fingerprint">Otisk SHA-256</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_OldFingerprint">Dříve důvěryhodný otisk</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_NewFingerprint">Zjištěný nový otisk</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Subject">Subjekt:</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_NotAfter">Platný do:</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Guidance">Ověřte, že odpovídá otisku zobrazenému v</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Trust">Důvěřovat tomuto certifikátu</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Repin">Připnout nový certifikát</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Cancel">Zrušit</sys:String>
+
+    <!-- Validation -->
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_LabelRequired">Popisek je povinný.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_AddressRequired">Adresa je povinná.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_AddressChars">Adresa nesmí obsahovat schémata, cesty, mezery ani shellové znaky. Použijte holý název hostitele nebo IP.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_PortRange">Port musí být v rozsahu 1 až 65535.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_MoonlightPathInvalid">Spustitelný soubor Moonlight nebyl na nakonfigurované cestě nalezen.</sys:String>
+
+    <!-- Common -->
+    <sys:String x:Key="LOC_SunshineLibrary_Common_Ok">OK</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Common_Cancel">Zrušit</sys:String>
+
+    <!-- Game context menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_BulkEdit">Upravit nastavení streamování pro {0} vybraných her…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverridesSelection">Vymazat přepsání streamování pro {0} vybraných her</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverridesConfirm">Vymazat přepsání streamování pro {0} vybraných her? Tuto akci nelze vrátit zpět.</sys:String>
+
+    <!-- Per-game override dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Title">Nastavení streamování — {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Display">Zobrazení</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Encoding">Kódování</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Performance">Výkon</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Output">Výstup</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Session">Relace</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Advanced">Pokročilé</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_ClearAll">Vymazat všechna přepsání</sys:String>
+
+    <!-- Per-game override field labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Resolution">Rozlišení</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Fps">Snímků za sekundu</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Hdr">HDR</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Bitrate">Datový tok</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VideoCodec">Video kodek</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VideoDecoder">Dekodér videa</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Yuv444">Barvonosný signál YUV 4:4:4</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_FramePacing">Časování snímků</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_GameOptimization">Optimalizace hry</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VSync">V-Sync</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_DisplayMode">Režim zobrazení</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_AudioConfig">Konfigurace zvuku</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_AudioOnHost">Zvuk na hostu</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_MuteOnFocusLoss">Ztlumit při ztrátě fokusu</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_KeepAwake">Udržet systém aktivní</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_CaptureSystemKeys">Zachytávat systémové klávesy</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ExtraArgs">Další argumenty Moonlight</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ExtraArgs_Help">Pokročilé. Připojeno doslovně k příkazovému řádku moonlight-qt. Rozděleno podle mezer — žádné shellové uvozování.</sys:String>
+
+    <!-- Override mode labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Inherit">Zdědit</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Auto">Automaticky (podle klienta)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Static">Pevná hodnota</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Hdr_On">Vynutit zapnuto</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Hdr_Off">Vynutit vypnuto</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_OverrideField">Přepsat</sys:String>
+
+    <!-- Fallback hint labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Auto">Dědí: automatická detekce z obrazovky klienta</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Static">Dědí: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Bitrate">Dědí: {0} Kbps</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Codec">Dědí: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_DisplayMode">Dědí: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_AudioConfig">Dědí: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Bool">Dědí: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_MoonlightDefault">Dědí: cokoli, co má Moonlight nakonfigurováno</sys:String>
+
+    <!-- Bulk dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Title">Hromadná úprava nastavení streamování</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Heading">Použít nastavení streamování na {0} vybraných her</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Help">Zaškrtněte pole, která chcete použít. Nezaškrtnutá pole zůstanou u každé hry beze změny. Pro úplné vymazání přepsání použijte „Vymazat přepsání streamování“ z kontextové nabídky.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Apply">Použít na {0} her</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_ApplyField">Použít {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_NothingSelected">Zaškrtněte alespoň jedno pole pro použití, nebo klikněte na Zrušit.</sys:String>
+
+
+    <!-- Main menu: orphan removal -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_RemoveOrphanGames">Odebrat osiřelé hry…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_RefreshVibeshineLibrary">Obnovit knihovnu hostitele Vibeshine…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_None">Žádné osiřelé hry nebyly nalezeny. Všechny záznamy ve vaší knihovně odpovídají aplikacím na dostupných hostitelích.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_Confirm">Odebrat {0} osiřelých her z knihovny? Herní čas, přepsání streamování pro jednotlivé hry a obaly budou trvale smazány. Hostitelé, kteří jsou aktuálně offline, jsou přeskočeni — jejich hry nejsou nikdy automaticky odstraňovány.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_Done">Odebráno {0} osiřelých her.</sys:String>
+
+    <!-- Settings: General tab — orphan removal -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AutoRemoveOrphans">Automaticky odebírat osiřelé hry při synchronizaci</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AutoRemoveOrphans_Help">Pokud je povoleno, hry, které již neexistují na žádném dostupném hostiteli, budou při příští synchronizaci odstraněny z Playnite. Ve výchozím nastavení vypnuto — osiřelé hry jsou místo toho označeny jako neinstalované, čímž se zachovají herní čas a přepsání. Hostitelé z mezipaměti (offline) nejsou nikdy odstraňováni bez ohledu na toto nastavení.</sys:String>
+
+    <!-- Settings: tabs -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Defaults">Výchozí nastavení streamování</sys:String>
+
+    <!-- Add/Edit Host dialog: tabs -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Tab_Host">Hostitel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Tab_Defaults">Výchozí nastavení streamování</sys:String>
+
+    <!-- Add/Edit Host dialog: streaming defaults section -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHeading">Výchozí nastavení streamování pro &quot;{0}&quot;</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHeadingUnnamed">tohoto hostitele</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHelp">Tyto hodnoty platí pro každou hru streamovanou z tohoto hostitele. Přepsání pro jednotlivé hry (kliknutí pravým tlačítkem na hru) mají přednost. Pole nastavená na Zdědit přecházejí na globální výchozí nastavení streamování a poté na vlastní nakonfigurované hodnoty Moonlight.</sys:String>
+
+    <!-- Add/Edit Host dialog: test connection -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestCancelled">Test zrušen.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestStepStatus">{0}: {1}</sys:String>
+
+    <!-- Host fields: orphan removal -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans">Automaticky odebírat osiřelé hry</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Help">Přepsání pro konkrétního hostitele pro mazání osiřelých her při synchronizaci. &quot;Zdědit&quot; odkazuje na globální nastavení na záložce Obecné.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Inherit">Zdědit z globálního nastavení</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Delete">Smazat osiřelé hry</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Keep">Ponechat osiřelé hry (označit jako neinstalované)</sys:String>
+
+    <!-- Host fields: enabled -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Enabled_Help">Zakázáním ponecháte tohoto hostitele v nastavení, ale při synchronizaci knihovny bude přeskočen. Užitečné pro hostitele, kteří jsou často offline.</sys:String>
+
+    <!-- Settings: Client tab — auto-detect -->
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect">Automaticky zjistit</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_None">Moonlight nebyl nalezen v PATH, Scoop, Winget ani v žádném standardním umístění instalace. Nainstalujte Moonlight nebo přejděte k jeho spustitelnému souboru.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_FoundOne">Moonlight nalezen na:&#x0a;{0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_Pick">Nalezeno více instalací Moonlight. Vyberte jednu:</sys:String>
+
+    <!-- Settings: Streaming Defaults tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_Heading">Výchozí možnosti Moonlight</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_Help">Tyto hodnoty platí pro každou streamovanou hru. Výchozí hodnoty pro konkrétního hostitele (na záložce Hostitelé) a přepsání pro jednotlivé hry (kliknutí pravým tlačítkem na hru) mají před těmito nastaveními přednost. Pole nastavená na Zdědit přecházejí na vlastní nakonfigurované výchozí hodnoty Moonlight.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_ResetToBuiltin">Obnovit vestavěné výchozí hodnoty</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_ResetConfirm">Obnovit všechna globální výchozí nastavení streamování? Rozlišení, FPS a HDR se vrátí na Automaticky (podle klienta); všechna ostatní pole se vrátí na Zdědit.</sys:String>
+
+    <!-- Per-game override field labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ShowStats">Překrytí výkonu</sys:String>
+
+    <!-- Fallback hint labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_BitrateAuto">Automaticky vypočítáno z rozlišení × fps (např. 1080p/60 → 20 Mbps, 4K/60 → 80 Mbps; YUV 4:4:4 tuto hodnotu zdvojnásobí)</sys:String>
+
+    <!-- Game context menu: view effective settings -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ViewEffectiveSettings">Zobrazit efektivní nastavení streamování…</sys:String>
+
+    <!-- Live preview strip -->
+    <sys:String x:Key="LOC_SunshineLibrary_Preview_Label">Efektivní příkazový řádek</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Preview_NoDisplayHint">Informace o obrazovce nejsou dostupné — automatické rozlišení, fps a HDR se mohou při spuštění lišit.</sys:String>
+
+    <!-- Effective settings dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettingsDialog_Title">Efektivní nastavení streamování — {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_HostGone">Hostitel pro tuto hru již není nakonfigurován. Přidejte hostitele zpět v nastavení a zkuste to znovu.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_DisplayUnavailable">Informace o obrazovce nejsou dostupné — pole s automatickým rozlišením, fps a HDR jsou zobrazena bez hodnot určovaných za běhu.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_CommandLine">Efektivní příkazový řádek Moonlight</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Copy">Kopírovat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Close">Zavřít</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColField">Pole</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColValue">Hodnota</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColSource">Zdroj</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColNote">Poznámka za běhu</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_BuiltIn">vestavěný</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_Global">globální</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_Host">hostitel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_PerGame">tato hra</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_AutoFromDisplay">→ {0} (z obrazovky)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_AutoUnavailable">(obrazovka nedostupná)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAuto">Automaticky vypočítáno</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAutoCalc">→ {0} Kbps (auto-výpočet)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_None">(žádné)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_HostLabel">Hostitel: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Bool_On">Zapnuto</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Bool_Off">Vypnuto</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAutoCalcApprox">→ {0} Kbps (est., display FPS unknown)</sys:String>
+
+    <!-- Imported-game platform and tags -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform">Platforma pro importované hry</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform_Default">Výchozí (PC (Windows))</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform_Help">Pod jakou platformu Playnite se streamované hry zařadí. Seznam obsahuje platformy, které už v knihovně máte. Platí pro nově importované hry; pro už existující hry použijte akci v hlavní nabídce.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AdditionalTags">Štítky přidané k importovaným hrám</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AdditionalTags_Help">Jeden štítek na řádek, přidává se ke štítkům odvozeným z hostitele. Platí pro nově importované hry; pro už existující hry použijte akci v hlavní nabídce.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ApplyPlatformTags">Použít platformu a štítky na existující hry…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_Confirm">Použít u {0} her?&#10;&#10;Platforma: {1}&#10;Přidané štítky: {2}&#10;&#10;Stávající štítky zůstanou; platforma bude nahrazena.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_Done">Aktualizováno {0} z {1} her.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_NoGames">Z této knihovny zatím nejsou žádné hry.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_NothingConfigured">Není nastavena platforma ani štítky. Nastavte je nejprve na kartě Obecné.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_PlatformUnchanged">beze změny</sys:String>
+
+    <!-- HDR Bridge fallback strings (translation contributions welcome) -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_HdrMetadata">HDR Automation</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Heading">Deterministic per-game HDR</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Help">Use the managed Playnite category synchronized by Vibeshine to request HDR or SDR for every game. Other saved Moonlight settings remain unchanged unless explicitly overridden.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Enabled">Use Vibeshine HDR category metadata</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Category">Managed HDR category</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_CategoryHelp">Must match the category configured in HDR Category Sync on the host. The default is HDR Bridge: HDR.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_ControlClient">Force Windows HDR on or off before Moonlight starts</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_RestoreSdr">Turn Windows HDR off after the stream ends or is cancelled</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_CancelOnFailure">Cancel launch if Windows cannot reach the requested HDR state</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_FailSafeHelp">Sunshine remains responsible for mirroring the Moonlight HDR request on the host. HDR-Auto remains independent for local host gaming.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_HdrCategoryRequired">Enter the managed HDR category name, or disable HDR automation.</sys:String>
+
+</ResourceDictionary>

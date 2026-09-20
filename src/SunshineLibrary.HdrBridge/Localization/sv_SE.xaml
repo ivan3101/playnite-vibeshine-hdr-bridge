@@ -1,0 +1,313 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Plugin identity -->
+    <sys:String x:Key="LOC_SunshineLibrary_Name">SunshineLibrary Vibeshine HDR Bridge</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Description">Stream Vibeshine applications through Moonlight with deterministic HDR automation.</sys:String>
+
+    <!-- Main menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_MenuSection">Sunshine</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ResyncAll">Synkronisera alla värdar igen</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_TestClient">Testa strömningsklient</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_HostStatus">Värdstatus…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_CleanOrphans">Rensa överblivna overrides</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_NoHosts">Inga värdar konfigurerade. Lägg till en värd i plugin-inställningarna.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_Ok">online ({0}, {1} appar)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostStatus_Fail">onåbar (misslyckades vid {0})</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CleanOrphans_Done">Rensade {0} överblivna override(s) av totalt {1} poster.</sys:String>
+
+    <!-- Game menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_StreamingSettings">Strömningsinställningar…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverrides">Rensa strömnings-overrides</sys:String>
+
+    <!-- Play action -->
+    <sys:String x:Key="LOC_SunshineLibrary_PlayAction_Stream">Strömma med Moonlight</sys:String>
+
+    <!-- Source label -->
+    <sys:String x:Key="LOC_SunshineLibrary_SourcePrefix">Sunshine: {0}</sys:String>
+
+    <!-- Feature tag -->
+    <sys:String x:Key="LOC_SunshineLibrary_Feature_GameStreaming">Spelströmning</sys:String>
+
+    <!-- Notifications: sync -->
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_Success">{0}: {1} spel tillgängliga</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_EmptyYieldGuard">{0}: ansluten, men inga appar returnerades, så värdens spel lämnades orörda. Kontrollera värdens applista och dina uteslutningsfilter och använd ”Ta bort överblivna spel…” om de verkligen har tagits bort allihop.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Sync_NoChanges">{0}: inga ändringar</sys:String>
+
+    <!-- Notifications: host errors -->
+    <sys:String x:Key="LOC_SunshineLibrary_Error_Unreachable">{0}: värden är onåbar. Visar cachade spel.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_Timeout">{0}: förfrågan tog för lång tid. Visar cachade spel.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_AuthFailed">{0}: autentisering misslyckades. Uppdatera inloggningsuppgifterna i inställningarna.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_CertMismatch_Title">{0}: certifikatet har ändrats</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_CertMismatch_Body">Certifikatet för {0} har ändrats. Det kan hända om Sunshine har installerats om, eller så kan det betyda att någon avlyssnar anslutningen. Öppna inställningarna för att granska och pinna om.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_MissingPin">{0}: certifikatet är inte pinnat. Konfigurera den här värden i inställningarna för att fortsätta synkronisera.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ServerError">{0}: servern returnerade ett fel ({1}).</sys:String>
+
+    <!-- Notifications: client -->
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ClientNotInstalled">Moonlight är inte installerat eller den konfigurerade sökvägen är ogiltig. Installera Moonlight och försök igen.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Error_ClientLaunchFailed">Kunde inte starta Moonlight: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Info_ClientInstalled">Moonlight hittades på {0}</sys:String>
+
+    <!-- Pre-launch warnings -->
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_HdrWithH264">HDR kräver HEVC eller AV1, men den valda codecen är H.264. HDR inaktiveras för den här sessionen.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_BitrateOutOfRange">Bitrate {0} Kbps ligger utanför giltigt intervall (500–500000).</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Warn_FpsOutOfRange">FPS {0} ligger utanför giltigt intervall (10–480).</sys:String>
+
+    <!-- Settings: tabs -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Hosts">Värdar</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Client">Strömningsklient</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_General">Allmänt</sys:String>
+
+    <!-- Settings: Hosts tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Add">Lägg till värd…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Edit">Redigera vald…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_Remove">Ta bort vald</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Hosts_RemoveConfirm">Ta bort värden "{0}" från SunshineLibrary? Inloggningsuppgifterna och cachen för värden tas också bort. Playnite-biblioteksposter för den här värden markeras som avinstallerade vid nästa synkronisering.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Label">Etikett</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Address">Adress</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Port">Port</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Flavor">Variant</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostCol_Enabled">Aktiverad</sys:String>
+
+    <!-- Settings: Client tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Heading">Sökväg till Moonlight-programmet</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Browse">Bläddra…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Browse_Title">Välj moonlight-qt.exe</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_PathHelp">Lämna tomt för att automatiskt söka i vanliga installationsplatser (Program Files, LocalAppData).</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_Test">Testa strömningsklient</sys:String>
+
+    <!-- Settings: General tab -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_NotificationMode">Aviseringar</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Always">Alltid — visa synkstatus och fel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_OnUpdateOnly">Endast vid ändringar — tyst när inget ändrats</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Never">Aldrig — visa endast säkerhetskritiska aviseringar</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Notif_Help">Säkerhets- och startkritiska händelser (autentiseringsfel, certifikatavvikelse, saknat pin, klient otillgänglig) visas alltid oavsett den här inställningen.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_DangerZone">Riskzon</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAll">Återkalla alla sparade inloggningsuppgifter</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllConfirm">Ta bort alla sparade lösenord och certifikat-pins? Du kommer att behöva ange inloggningsuppgifter igen och bekräfta varje värds certifikatfingeravtryck på nytt vid nästa synkronisering.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllDone">Alla sparade inloggningsuppgifter har återkallats.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_RevokeAllHelp">Använd detta om du misstänker att en inställningsfil har kopierats eller om du vill börja om. Värdar tas inte bort från listan — endast de sparade lösenorden.</sys:String>
+
+    <!-- Add/Edit Host dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TitleAdd">Lägg till Sunshine-värd</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TitleEdit">Redigera Sunshine-värd</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Label">Etikett</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Address">Adress (värdnamn eller IP)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Port">Port</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AdminUser">Admin-användarnamn</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AdminPassword">Admin-lösenord</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ApiToken">API Token</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ApiToken_Help">Vibeshine/Apollo: authenticate with a Bearer token instead of username/password. Generate in the web console (Admin → API Tokens). Required scopes: GET /api/config, /api/playnite/status, /api/apps, /api/playnite/games; POST /api/playnite/force_sync, /api/apps/close.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ServerType">Server type</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ServerType_AutoDetect">Auto-detect</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Enabled">Aktiverad</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ExcludedAppNames">Uteslutna app-namn (ett per rad)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_ExcludedAppNames_Help">Appar som matchar dessa namn (skiftlägesokänsligt) visas inte i Playnite. Förifylld med Sunshine-standarder (Desktop, Steam Big Picture, Terminate) — ta bort de du vill behålla.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestConnection">Testa anslutning</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Testing">Testar…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestOk">Testet lyckades. Variant: {0}. Appar hittade: {1}.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestFailedAt">Testet misslyckades vid steg {0}: {1}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_RunTestFirst">Kör "Testa anslutning" först så att pluginet kan observera värdens certifikatfingeravtryck.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_PinDeclined">Certifikatet bekräftades inte. Värden sparades inte.</sys:String>
+
+    <!-- Cert pin dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Title">Bekräfta certifikat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Heading">Lita på certifikat för "{0}"?</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_BodyFirstConnect">Sunshine använder självsignerade certifikat. Pinna fingeravtrycket nedan så att framtida anslutningar verifieras mot det. Om du inte har satt upp den här värden, välj Nej.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_BodyRepin">Certifikatfingeravtrycket för den här värden har ändrats. Det kan hända om Sunshine har installerats om — eller så kan det betyda att någon avlyssnar anslutningen. Bekräfta det nya fingeravtrycket endast om du nyligen har installerat om värden.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Fingerprint">SHA-256-fingeravtryck</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_OldFingerprint">Tidigare betrott fingeravtryck</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_NewFingerprint">Nytt observerat fingeravtryck</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Subject">Subjekt:</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_NotAfter">Giltigt till:</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Guidance">Kontrollera att detta matchar fingeravtrycket som visas på</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Trust">Lita på det här certifikatet</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Repin">Pinna om mot nytt certifikat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_CertDialog_Cancel">Avbryt</sys:String>
+
+    <!-- Validation -->
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_LabelRequired">Etikett krävs.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_AddressRequired">Adress krävs.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_AddressChars">Adress får inte innehålla scheman, sökvägar, blanksteg eller shell-tecken. Använd enbart värdnamn eller IP.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_PortRange">Porten måste vara mellan 1 och 65535.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_MoonlightPathInvalid">Moonlight-programmet hittades inte vid den konfigurerade sökvägen.</sys:String>
+
+    <!-- Common -->
+    <sys:String x:Key="LOC_SunshineLibrary_Common_Ok">OK</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Common_Cancel">Avbryt</sys:String>
+
+    <!-- Game context menu -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_BulkEdit">Redigera strömningsinställningar för {0} valda spel…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverridesSelection">Rensa strömnings-overrides för {0} valda spel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ClearOverridesConfirm">Rensa strömnings-overrides för {0} valda spel? Detta kan inte ångras.</sys:String>
+
+    <!-- Per-game override dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Title">Strömningsinställningar — {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Display">Bildskärm</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Encoding">Kodning</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Performance">Prestanda</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Output">Utmatning</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Session">Session</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_Group_Advanced">Avancerat</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideDialog_ClearAll">Rensa alla overrides</sys:String>
+
+    <!-- Per-game override field labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Resolution">Upplösning</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Fps">Bilder per sekund</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Hdr">HDR</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Bitrate">Bitrate</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VideoCodec">Videocodec</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VideoDecoder">Videodekoder</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_Yuv444">YUV 4:4:4 chroma</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_FramePacing">Frame pacing</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_GameOptimization">Speloptimering</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_VSync">V-Sync</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_DisplayMode">Visningsläge</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_AudioConfig">Ljudkonfiguration</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_AudioOnHost">Ljud på värddatorn</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_MuteOnFocusLoss">Stäng av ljud vid fokusförlust</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_KeepAwake">Håll systemet vaket</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_CaptureSystemKeys">Fånga systemtangenter</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ExtraArgs">Extra Moonlight-argument</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ExtraArgs_Help">Avancerat. Läggs till ordagrant på moonlight-qt-kommandoraden. Delas på blanksteg — ingen shell-citering.</sys:String>
+
+    <!-- Override mode labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Inherit">Ärv</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Auto">Automatiskt (matcha klient)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Mode_Static">Fast värde</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Hdr_On">Tvinga på</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Hdr_Off">Tvinga av</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_OverrideField">Override</sys:String>
+
+    <!-- Fallback hint labels -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Auto">Ärver: autodetekteras från klientens bildskärm</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Static">Ärver: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Bitrate">Ärver: {0} Kbps</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Codec">Ärver: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_DisplayMode">Ärver: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_AudioConfig">Ärver: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_Bool">Ärver: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_MoonlightDefault">Ärver: det som Moonlight är inställt att använda</sys:String>
+
+    <!-- Bulk dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Title">Masseditera strömningsinställningar</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Heading">Tillämpa strömningsinställningar på {0} valda spel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Help">Bocka i de fält du vill tillämpa. Ibockade fält lämnas orörda per spel. För att rensa overrides helt, använd "Rensa strömnings-overrides" i högerklicksmenyn.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_Apply">Tillämpa på {0} spel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_ApplyField">Tillämpa {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_BulkDialog_NothingSelected">Bocka i minst ett fält att tillämpa, eller klicka på Avbryt.</sys:String>
+
+
+    <!-- Main menu: orphan removal -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_RemoveOrphanGames">Ta bort överblivna spel…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_RefreshVibeshineLibrary">Uppdatera Vibeshine-värdens bibliotek…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_None">Inga överblivna spel hittades. Alla biblioteksposter matchar appar på nåbara värdar.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_Confirm">Ta bort {0} överblivet/överblivna spel från biblioteket? Speltid, per-spel-strömnings-overrides och omslag tas bort permanent. Värdar som för tillfället är offline hoppas över — deras spel rensas aldrig automatiskt.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_RemoveOrphanGames_Done">Tog bort {0} överblivet/överblivna spel.</sys:String>
+
+    <!-- Settings: General tab — orphan removal -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AutoRemoveOrphans">Ta bort överblivna spel automatiskt vid synkronisering</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AutoRemoveOrphans_Help">När aktiverat tas spel som inte längre finns på någon nåbar värd bort från Playnite vid nästa synkronisering. Avstängt som standard — överblivna spel markeras som avinstallerade i stället, vilket bevarar speltid och overrides. Värdar med cache-reserv (offline) rensas aldrig oavsett den här inställningen.</sys:String>
+
+    <!-- Settings: tab label -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_Defaults">Strömningsstandarder</sys:String>
+
+    <!-- Host dialog: tabs -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Tab_Host">Värd</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_Tab_Defaults">Strömningsstandarder</sys:String>
+
+    <!-- Host dialog: defaults section -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHeading">Strömningsstandarder för &quot;{0}&quot;</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHeadingUnnamed">den här värden</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_DefaultsHelp">Dessa värden gäller för varje spel som strömmas från den här värden. Per-spel-overrides (högerklicka på ett spel) har företräde. Fält inställda på Ärv faller igenom till de globala strömningsstandarderna och sedan till Moonlight&apos;s egna konfigurerade värden.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestCancelled">Testet avbröts.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostDialog_TestStepStatus">{0}: {1}</sys:String>
+
+    <!-- Host field: per-host orphan setting -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans">Ta bort överblivna spel automatiskt</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Help">Per-värd-override för borttagning av överblivna spel vid synkronisering. &quot;Ärv&quot; använder den globala inställningen på fliken Allmänt.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Inherit">Ärv från global inställning</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Delete">Ta bort överblivna spel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_AutoRemoveOrphans_Keep">Behåll överblivna spel (markera avinstallerade)</sys:String>
+
+    <!-- Host field: enabled help -->
+    <sys:String x:Key="LOC_SunshineLibrary_HostField_Enabled_Help">Inaktivera för att behålla den här värden i inställningarna men hoppa över den vid bibliotekssynkronisering. Användbart för värdar som ofta är offline.</sys:String>
+
+    <!-- Client: auto-detect -->
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect">Identifiera automatiskt</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_None">Moonlight hittades inte i PATH, Scoop, Winget eller någon standardinstallationsplats. Installera Moonlight eller bläddra till dess programfil.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_FoundOne">Moonlight hittades på:&#x0a;{0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Client_AutoDetect_Pick">Flera Moonlight-installationer hittades. Välj en:</sys:String>
+
+    <!-- Defaults section -->
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_Heading">Moonlight-standardalternativ</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_Help">Dessa värden gäller för varje strömmade spel. Per-värd-standarder (på fliken Värdar) och per-spel-overrides (högerklicka på ett spel) har företräde. Fält inställda på Ärv faller igenom till Moonlight&apos;s egna konfigurerade standarder.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_ResetToBuiltin">Återställ till inbyggda standarder</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Defaults_ResetConfirm">Återställa alla globala strömningsstandarder? Upplösning, FPS och HDR återgår till Automatiskt (matcha klient); alla övriga fält återgår till Ärv.</sys:String>
+
+    <!-- Override field -->
+    <sys:String x:Key="LOC_SunshineLibrary_OverrideField_ShowStats">Prestandaöverlagring</sys:String>
+
+    <!-- Fallback hint -->
+    <sys:String x:Key="LOC_SunshineLibrary_Override_Fallback_BitrateAuto">Beräknas automatiskt från upplösning × fps (t.ex. 1080p/60 → 20 Mbps, 4K/60 → 80 Mbps; YUV 4:4:4 fördubblar detta)</sys:String>
+
+    <!-- Game context menu: view effective settings -->
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ViewEffectiveSettings">Visa effektiva strömningsinställningar…</sys:String>
+
+    <!-- Live preview strip -->
+    <sys:String x:Key="LOC_SunshineLibrary_Preview_Label">Effektiv kommandorad</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Preview_NoDisplayHint">Bildskärmsinformation ej tillgänglig — Automatisk upplösning, fps och HDR kan skilja sig vid start.</sys:String>
+
+    <!-- Effective settings dialog -->
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettingsDialog_Title">Effektiva strömningsinställningar — {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_HostGone">Värden för det här spelet är inte längre konfigurerad. Lägg till värden igen i inställningarna och försök igen.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_DisplayUnavailable">Bildskärmsinformation ej tillgänglig — Fält för automatisk upplösning, fps och HDR visas utan sina körtidsupplösta värden.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_CommandLine">Effektiv Moonlight-kommandorad</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Copy">Kopiera</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Close">Stäng</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColField">Fält</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColValue">Värde</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColSource">Källa</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_ColNote">Körtidsanteckning</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_BuiltIn">inbyggd</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_Global">global</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_Host">värd</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_Source_PerGame">det här spelet</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_AutoFromDisplay">→ {0} (från bildskärm)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_AutoUnavailable">(bildskärm ej tillgänglig)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAuto">Automatiskt beräknad</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAutoCalc">→ {0} Kbps (auto-beräknad)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_None">(ingen)</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_HostLabel">Host: {0}</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Bool_On">På</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Bool_Off">Av</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_EffectiveSettings_BitrateAutoCalcApprox">→ {0} Kbps (est., display FPS unknown)</sys:String>
+
+    <!-- Imported-game platform and tags -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform">Plattform för importerade spel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform_Default">Standard (PC (Windows))</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_LibraryPlatform_Help">Vilken Playnite-plattform strömmade spel sorteras under. Visar de plattformar som redan finns i biblioteket. Gäller nyimporterade spel; använd åtgärden i huvudmenyn för spel du redan har.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AdditionalTags">Taggar som läggs till importerade spel</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_AdditionalTags_Help">En tagg per rad, utöver de taggar som härleds från värden. Gäller nyimporterade spel; använd åtgärden i huvudmenyn för spel du redan har.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Menu_ApplyPlatformTags">Tillämpa plattform och taggar på befintliga spel…</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_Confirm">Tillämpa på {0} spel?&#10;&#10;Plattform: {1}&#10;Tillagda taggar: {2}&#10;&#10;Befintliga taggar behålls; plattformen ersätts.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_Done">Uppdaterade {0} av {1} spel.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_NoGames">Inga spel från det här biblioteket ännu.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_NothingConfigured">Ingen plattform eller taggar har konfigurerats. Ange dem först på fliken Allmänt.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_ApplyPlatformTags_PlatformUnchanged">oförändrad</sys:String>
+
+    <!-- HDR Bridge fallback strings (translation contributions welcome) -->
+    <sys:String x:Key="LOC_SunshineLibrary_Settings_Tab_HdrMetadata">HDR Automation</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Heading">Deterministic per-game HDR</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Help">Use the managed Playnite category synchronized by Vibeshine to request HDR or SDR for every game. Other saved Moonlight settings remain unchanged unless explicitly overridden.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Enabled">Use Vibeshine HDR category metadata</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_Category">Managed HDR category</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_CategoryHelp">Must match the category configured in HDR Category Sync on the host. The default is HDR Bridge: HDR.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_ControlClient">Force Windows HDR on or off before Moonlight starts</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_RestoreSdr">Turn Windows HDR off after the stream ends or is cancelled</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_CancelOnFailure">Cancel launch if Windows cannot reach the requested HDR state</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_HdrMetadata_FailSafeHelp">Sunshine remains responsible for mirroring the Moonlight HDR request on the host. HDR-Auto remains independent for local host gaming.</sys:String>
+    <sys:String x:Key="LOC_SunshineLibrary_Validation_HdrCategoryRequired">Enter the managed HDR category name, or disable HDR automation.</sys:String>
+
+</ResourceDictionary>

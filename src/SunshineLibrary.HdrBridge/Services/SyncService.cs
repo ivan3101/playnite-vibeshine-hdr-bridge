@@ -1,0 +1,244 @@
+using Playnite.SDK;
+using Playnite.SDK.Models;
+using SunshineLibrary.Models;
+using SunshineLibrary.Services.Hosts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using PlayniteGameMetadata = Playnite.SDK.Models.GameMetadata;
+using PlayniteMetadata = Playnite.SDK.Models.MetadataNameProperty;
+using PlayniteSpec = Playnite.SDK.Models.MetadataSpecProperty;
+using MetadataProperty = Playnite.SDK.Models.MetadataProperty;
+using MetadataFile = Playnite.SDK.Models.MetadataFile;
+
+namespace SunshineLibrary.Services
+{
+    /// <summary>
+    /// Multi-host fan-out with per-host cache fallback. One offline host surfaces
+    /// a status in its HostSyncResult but does not fail the overall sync — cached
+    /// apps (marked with an "offline" tag) still yield so the user's library doesn't
+    /// vanish when a host is briefly unreachable.
+    /// </summary>
+    public class SyncService
+    {
+        private const int ConcurrentHostLimit = 4;
+        private const string OfflineTagName = "SunshineLibrary: offline";
+
+        private static readonly ILogger logger = LogManager.GetLogger();
+        private readonly Guid pluginId;
+        private readonly AppCache appCache;
+
+        public SyncService(Guid pluginId, AppCache appCache)
+        {
+            this.pluginId = pluginId;
+            this.appCache = appCache;
+        }
+
+        public class HostSyncResult
+        {
+            public HostConfig Host { get; set; }
+            public HostResult Status { get; set; }
+            public List<PlayniteGameMetadata> Games { get; set; } = new List<PlayniteGameMetadata>();
+            public bool FromCache { get; set; }
+        }
+
+        public class SyncSummary
+        {
+            public List<HostSyncResult> Results { get; set; } = new List<HostSyncResult>();
+            public IEnumerable<PlayniteGameMetadata> AllGames => Results.SelectMany(r => r.Games);
+        }
+
+        /// <summary>
+        /// Fan out across all hosts in parallel under a semaphore. Per-host errors
+        /// are captured in the HostSyncResult and do NOT propagate.
+        /// </summary>
+        public async Task<SyncSummary> SyncAllAsync(
+            IEnumerable<HostConfig> hosts, LibraryMetadataOptions options, CancellationToken ct)
+        {
+            var summary = new SyncSummary();
+            if (hosts == null) return summary;
+
+            var hostList = hosts.Where(h => h != null && h.Enabled).ToList();
+            if (hostList.Count == 0) return summary;
+
+            using (var throttle = new SemaphoreSlim(ConcurrentHostLimit))
+            {
+                var tasks = hostList.Select(async h =>
+                {
+                    await throttle.WaitAsync(ct).ConfigureAwait(false);
+                    try
+                    {
+                        return await SyncOneAsync(h, options, ct).ConfigureAwait(false);
+                    }
+                    finally
+                    {
+                        throttle.Release();
+                    }
+                }).ToArray();
+
+                var results = await Task.WhenAll(tasks).ConfigureAwait(false);
+                summary.Results.AddRange(results);
+            }
+            return summary;
+        }
+
+        /// <summary>Single-host path. Live-fetches, saves cache on success, yields cache on error.</summary>
+        public async Task<HostSyncResult> SyncOneAsync(
+            HostConfig host, LibraryMetadataOptions options, CancellationToken ct)
+        {
+            var result = new HostSyncResult { Host = host };
+            if (host == null || !host.Enabled)
+            {
+                result.Status = HostResult.Ok();
+                return result;
+            }
+
+            HostClient client = null;
+            try
+            {
+                client = HostClientFactory.Create(host);
+
+                // Probe flavor if we haven't yet — cheap, caches on HostConfig.
+                if (host.ServerType == ServerType.Unknown)
+                {
+                    var probed = await HostClientFactory.ProbeServerTypeAsync(client, ct).ConfigureAwait(false);
+                    if (probed != ServerType.Unknown && probed != host.ServerType)
+                    {
+                        host.ServerType = probed;
+                        client.Dispose();
+                        client = HostClientFactory.Create(host);
+                    }
+                }
+
+                var apps = await client.ListAppsAsync(ct).ConfigureAwait(false);
+                if (!apps.IsOk)
+                {
+                    result.Status = apps.AsStatus();
+                    TryYieldFromCache(host, result, options);
+                    return result;
+                }
+
+                appCache?.Save(host.Id, apps.Value);
+
+                var filtered = PseudoAppFilter.Apply(apps.Value, host).ToList();
+                foreach (var app in filtered)
+                {
+                    var meta = BuildMeta(host, app, fromCache: false, options: options);
+
+                    // Inline cover: best-effort, quiet on failure — Playnite falls through to IGDB.
+                    var cover = await client.FetchCoverAsync(app, ct).ConfigureAwait(false);
+                    if (cover.IsOk && cover.Value != null && cover.Value.Length > 0)
+                    {
+                        meta.CoverImage = new MetadataFile(
+                            $"{host.Label}-{app.Name}.png", cover.Value);
+                    }
+
+                    result.Games.Add(meta);
+                }
+
+                result.Status = HostResult.Ok();
+                return result;
+            }
+            catch (OperationCanceledException)
+            {
+                result.Status = HostResult.Cancelled();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.Warn($"[{host.Label}] sync failed: {SafeLogging.Redact(ex.Message)}");
+                result.Status = HostResult.Unreachable(ex.Message);
+                TryYieldFromCache(host, result, options);
+                return result;
+            }
+            finally
+            {
+                client?.Dispose();
+            }
+        }
+
+        private void TryYieldFromCache(HostConfig host, HostSyncResult result, LibraryMetadataOptions options)
+        {
+            if (appCache == null) return;
+            var cached = appCache.TryLoad(host.Id);
+            if (cached == null || cached.Count == 0) return;
+
+            var filtered = PseudoAppFilter.Apply(cached, host);
+            foreach (var app in filtered)
+            {
+                result.Games.Add(BuildMeta(host, app, fromCache: true, options: options));
+            }
+            result.FromCache = true;
+            logger.Info($"[{host.Label}] yielded {result.Games.Count} games from cache (live fetch failed).");
+        }
+
+        /// <summary>
+        /// Compose the Playnite metadata for one remote app.
+        ///
+        /// <c>internal</c> rather than private so tests can assert the shape directly —
+        /// same test seam as <see cref="Hosts.HostClient"/>'s handler-injecting ctor.
+        /// </summary>
+        internal PlayniteGameMetadata BuildMeta(
+            HostConfig host, RemoteApp app, bool fromCache, LibraryMetadataOptions options = null)
+        {
+            var sourcePrefix = host.ServerType == ServerType.Vibeshine ? "Vibeshine" : "Sunshine";
+            var source = new PlayniteMetadata($"{sourcePrefix}: {host.Label}");
+            var platform = ResolvePlatform(options);
+            var feature = new PlayniteMetadata("Game Streaming");
+
+            var tags = new HashSet<MetadataProperty>();
+            if (!string.IsNullOrEmpty(app.PluginName))
+                tags.Add(new PlayniteMetadata(app.PluginName));
+            if (app.Categories != null)
+                foreach (var cat in app.Categories)
+                    if (!string.IsNullOrWhiteSpace(cat))
+                        tags.Add(new PlayniteMetadata(cat));
+            if (options != null)
+                foreach (var t in options.CleanTags())
+                    tags.Add(new PlayniteMetadata(t));
+            if (fromCache)
+                tags.Add(new PlayniteMetadata(OfflineTagName));
+
+            var meta = new PlayniteGameMetadata
+            {
+                GameId = $"{host.Id}:{app.StableId}",
+                Name = app.Name,
+                IsInstalled = true,
+                // A streamed app occupies nothing locally — the bits live on the host.
+                // State both fields explicitly instead of leaving them unset: Playnite's
+                // size scanner only measures InstallDirectory (or Roms), so an empty
+                // directory keeps it from ever attributing a local folder's size to a
+                // remote game, and an explicit 0 reads as "nothing installed here"
+                // rather than "unknown" for anything else inspecting the entry.
+                // 0 groups as InstallSizeGroup.None, exactly as null does, so filters
+                // and grouping behave the same as before.
+                InstallDirectory = string.Empty,
+                InstallSize = 0,
+                Source = source,
+                Platforms = new HashSet<MetadataProperty> { platform },
+                Features = new HashSet<MetadataProperty> { feature },
+            };
+
+            if (tags.Count > 0)
+                meta.Tags = tags;
+
+            return meta;
+        }
+
+        /// <summary>
+        /// A configured platform is matched by name — Playnite resolves an existing
+        /// platform with that name or creates one. With nothing configured we keep
+        /// emitting the built-in specification, so upgrading changes nothing for
+        /// users who never touch the setting.
+        /// </summary>
+        private static MetadataProperty ResolvePlatform(LibraryMetadataOptions options)
+        {
+            var name = options?.PlatformName;
+            return string.IsNullOrWhiteSpace(name)
+                ? (MetadataProperty)new PlayniteSpec(LibraryMetadataOptions.DefaultPlatformSpecId)
+                : new PlayniteMetadata(name.Trim());
+        }
+    }
+}

@@ -1,0 +1,42 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HdrBridge.Core", "src\HdrBridge.Core\HdrBridge.Core.csproj", "{A4A2FC90-846D-433A-A64E-1C2A8582CA90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HdrMetadataExporter", "src\HdrMetadataExporter\HdrMetadataExporter.csproj", "{46096570-3CDF-4EF3-8308-0B248564E5E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunshineLibrary.HdrBridge", "src\SunshineLibrary.HdrBridge\SunshineLibrary.csproj", "{8A3D1E24-6F5B-4C12-9A7E-2D3F4C5B6A7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HdrBridge.Core.Tests", "tests\HdrBridge.Core.Tests\HdrBridge.Core.Tests.csproj", "{498DE2DB-19E0-4629-B711-1939503881CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunshineLibrary.Tests", "src\SunshineLibrary.HdrBridge\Tests\SunshineLibrary.Tests.csproj", "{C4E2B6F8-3A9D-4E17-8B52-7F1D9C6A4E38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4A2FC90-846D-433A-A64E-1C2A8582CA90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A2FC90-846D-433A-A64E-1C2A8582CA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A2FC90-846D-433A-A64E-1C2A8582CA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4A2FC90-846D-433A-A64E-1C2A8582CA90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46096570-3CDF-4EF3-8308-0B248564E5E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46096570-3CDF-4EF3-8308-0B248564E5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46096570-3CDF-4EF3-8308-0B248564E5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46096570-3CDF-4EF3-8308-0B248564E5E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A3D1E24-6F5B-4C12-9A7E-2D3F4C5B6A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A3D1E24-6F5B-4C12-9A7E-2D3F4C5B6A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A3D1E24-6F5B-4C12-9A7E-2D3F4C5B6A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A3D1E24-6F5B-4C12-9A7E-2D3F4C5B6A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498DE2DB-19E0-4629-B711-1939503881CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498DE2DB-19E0-4629-B711-1939503881CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498DE2DB-19E0-4629-B711-1939503881CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498DE2DB-19E0-4629-B711-1939503881CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4E2B6F8-3A9D-4E17-8B52-7F1D9C6A4E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4E2B6F8-3A9D-4E17-8B52-7F1D9C6A4E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4E2B6F8-3A9D-4E17-8B52-7F1D9C6A4E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4E2B6F8-3A9D-4E17-8B52-7F1D9C6A4E38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

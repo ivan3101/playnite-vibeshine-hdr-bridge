@@ -1,0 +1,6 @@
+Id: HdrMetadataExporter_8ec69983-0a95-4e65-9af4-459eb24c7547
+Name: HDR Category Sync
+Author: Playnite HDR Bridge contributors
+Version: 0.2.0
+Module: HdrMetadataExporter.dll
+Type: GenericPlugin

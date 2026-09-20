@@ -1,0 +1,20 @@
+{
+  "$schema": "urn:playnite-vibeshine-hdr-bridge:configuration:v1",
+  "host": {
+    "hdrCategoryName": "HDR Bridge: HDR",
+    "forceHdrTag": "Force HDR",
+    "forceSdrTag": "Force SDR",
+    "hdrFeatureNames": ["HDR"],
+    "installedGamesOnly": true,
+    "synchronizeOnLibraryChange": true
+  },
+  "client": {
+    "serverType": "Vibeshine",
+    "hdrCategoryName": "HDR Bridge: HDR",
+    "enabled": true,
+    "controlClientHdr": true,
+    "restoreClientToSdr": true,
+    "cancelLaunchOnSwitchFailure": true,
+    "moonlightQualityOverrides": {}
+  }
+}
