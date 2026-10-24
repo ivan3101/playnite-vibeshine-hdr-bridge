@@ -1,4 +1,5 @@
 using SunshineLibrary.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -14,8 +15,8 @@ namespace SunshineLibrary.Services.Hosts
     /// ListAppsAsync fetches both /api/apps (for stable UUIDs and cover art) and
     /// /api/playnite/games (for PluginName and Categories), joining primarily on
     /// stable Playnite ID and using a unique-name fallback for older app payloads.
-    /// A failed Playnite fetch fails the whole synchronization so SyncService keeps
-    /// the last-good app/category cache instead of overwriting it with partial data.
+    /// A failed or incomplete Playnite fetch fails the whole synchronization so
+    /// SyncService keeps the last-good app/category cache instead of overwriting it.
     /// </summary>
     public sealed class VibeshineHostClient : ApolloHostClient
     {
@@ -24,11 +25,14 @@ namespace SunshineLibrary.Services.Hosts
         public VibeshineHostClient(HostConfig config) : base(config)
         {
             ConfigureAuthorization(config);
+            // The host may wait up to 10 seconds for a fresh Playnite snapshot.
+            Http.Timeout = TimeSpan.FromSeconds(15);
         }
 
         internal VibeshineHostClient(HostConfig config, HttpMessageHandler handler) : base(config, handler)
         {
             ConfigureAuthorization(config);
+            Http.Timeout = TimeSpan.FromSeconds(15);
         }
 
         /// <summary>
@@ -64,9 +68,31 @@ namespace SunshineLibrary.Services.Hosts
                 if (playniteResult.Kind == HostResultKind.AuthFailed) InvalidateSession();
                 return ToGeneric<IReadOnlyList<RemoteApp>>(playniteResult.AsStatus());
             }
-            var lookups = BuildPlayniteLookups(playniteResult.Value);
-
             var apps = appsResult.Value?.Apps ?? new List<ApolloAppDto>();
+            var lookups = BuildPlayniteLookups(playniteResult.Value);
+            if (HasIncompletePlayniteSnapshot(apps, lookups))
+            {
+                // /api/playnite/games can be an empty (HTTP 200) snapshot while
+                // Vibeshine starts its Playnite IPC client. Refresh once, then let
+                // SyncService use its last-good cache if metadata is still absent.
+                var refresh = await ForceSyncAsync(ct).ConfigureAwait(false);
+                if (refresh.IsOk)
+                {
+                    playniteResult = await GetJsonAsync<List<VibeshinePlayniteGameDto>>(
+                        "api/playnite/games", ct).ConfigureAwait(false);
+                    if (!playniteResult.IsOk)
+                        return ToGeneric<IReadOnlyList<RemoteApp>>(playniteResult.AsStatus());
+                    lookups = BuildPlayniteLookups(playniteResult.Value);
+                }
+
+                if (HasIncompletePlayniteSnapshot(apps, lookups))
+                {
+                    logger.Warn($"[{Config.Label}] Playnite category snapshot is incomplete; retaining cached apps.");
+                    return HostResult<IReadOnlyList<RemoteApp>>.ServerError(
+                        0, "Playnite category snapshot is not ready");
+                }
+            }
+
             var list = new List<RemoteApp>(apps.Count);
             for (int i = 0; i < apps.Count; i++)
             {
@@ -122,7 +148,13 @@ namespace SunshineLibrary.Services.Hosts
             var login = await EnsureSessionAsync(ct).ConfigureAwait(false);
             if (!login.IsOk) return login;
 
-            var r = await PostJsonAsync("api/playnite/force_sync", null, null, ct).ConfigureAwait(false);
+            var response = await PostJsonAsync<JObject>("api/playnite/force_sync", null, null, ct)
+                .ConfigureAwait(false);
+            var r = response.IsOk
+                ? response.Value?.Value<bool?>("status") == true
+                    ? HostResult.Ok()
+                    : HostResult.ServerError(0, "Vibeshine did not confirm a Playnite snapshot")
+                : response.AsStatus();
             if (r.Kind == HostResultKind.AuthFailed) InvalidateSession();
             return r;
         }
@@ -177,6 +209,19 @@ namespace SunshineLibrary.Services.Hosts
                 result.ByUniqueName[g.Name] = g;
             }
             return result;
+        }
+
+        private static bool HasIncompletePlayniteSnapshot(
+            List<ApolloAppDto> apps, PlayniteLookups lookups)
+        {
+            foreach (var app in apps)
+            {
+                if (app == null || string.IsNullOrWhiteSpace(app.PlayniteId)) continue;
+                VibeshinePlayniteGameDto game;
+                if (!lookups.ById.TryGetValue(app.PlayniteId, out game) || game.Categories == null)
+                    return true;
+            }
+            return false;
         }
 
         private void ConfigureAuthorization(HostConfig config)

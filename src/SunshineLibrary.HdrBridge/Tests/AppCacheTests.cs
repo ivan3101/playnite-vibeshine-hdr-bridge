@@ -55,6 +55,25 @@ namespace SunshineLibrary.Tests
         }
 
         [TestMethod]
+        public void Save_Then_Load_PreservesPlayniteIdentityAndCategoriesAcrossRestart()
+        {
+            var hostId = Guid.NewGuid();
+            new AppCache(tempDir).Save(hostId, new[]
+            {
+                new RemoteApp
+                {
+                    StableId = "app-id",
+                    PlayniteId = "game-id",
+                    Categories = new List<string> { "HDR Bridge: HDR" },
+                },
+            });
+
+            var app = new AppCache(tempDir).TryLoad(hostId)[0];
+            Assert.AreEqual("game-id", app.PlayniteId);
+            CollectionAssert.AreEqual(new[] { "HDR Bridge: HDR" }, app.Categories);
+        }
+
+        [TestMethod]
         public void TryLoad_Missing_ReturnsNull()
         {
             var cache = new AppCache(tempDir);

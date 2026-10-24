@@ -120,9 +120,34 @@ namespace SunshineLibrary.Services
                     return result;
                 }
 
-                appCache?.Save(host.Id, apps.Value);
+                var liveApps = apps.Value;
+                if (host.ServerType == ServerType.Vibeshine &&
+                    HasChangedPlayniteCategories(appCache?.TryLoad(host.Id), liveApps))
+                {
+                    // A startup snapshot can contain IDs but stale category lists.
+                    // Confirm a category transition with the same host-side refresh
+                    // used by the manual Resync action before replacing the cache.
+                    var refresh = await client.ForceSyncAsync(ct).ConfigureAwait(false);
+                    if (refresh.IsOk)
+                    {
+                        var verified = await client.ListAppsAsync(ct).ConfigureAwait(false);
+                        if (!verified.IsOk)
+                        {
+                            result.Status = verified.AsStatus();
+                            TryYieldFromCache(host, result, options);
+                            return result;
+                        }
+                        liveApps = verified.Value;
+                    }
+                    else
+                    {
+                        logger.Debug($"[{host.Label}] category refresh returned {refresh.Kind}; using live snapshot.");
+                    }
+                }
 
-                var filtered = PseudoAppFilter.Apply(apps.Value, host).ToList();
+                appCache?.Save(host.Id, liveApps);
+
+                var filtered = PseudoAppFilter.Apply(liveApps, host).ToList();
                 foreach (var app in filtered)
                 {
                     var meta = BuildMeta(host, app, fromCache: false, options: options);
@@ -172,6 +197,31 @@ namespace SunshineLibrary.Services
             }
             result.FromCache = true;
             logger.Info($"[{host.Label}] yielded {result.Games.Count} games from cache (live fetch failed).");
+        }
+
+        internal static bool HasChangedPlayniteCategories(
+            IReadOnlyList<RemoteApp> previous, IReadOnlyList<RemoteApp> current)
+        {
+            if (previous == null || current == null) return false;
+            var byStableId = previous
+                .Where(app => app != null && !string.IsNullOrWhiteSpace(app.StableId))
+                .GroupBy(app => app.StableId, StringComparer.OrdinalIgnoreCase)
+                .Where(group => group.Count() == 1)
+                .ToDictionary(group => group.Key, group => group.Single(), StringComparer.OrdinalIgnoreCase);
+
+            foreach (var app in current)
+            {
+                if (app == null || string.IsNullOrWhiteSpace(app.StableId) ||
+                    string.IsNullOrWhiteSpace(app.PlayniteId) || app.Categories == null) continue;
+                RemoteApp old;
+                if (!byStableId.TryGetValue(app.StableId, out old) ||
+                    !string.Equals(old.PlayniteId, app.PlayniteId, StringComparison.OrdinalIgnoreCase) ||
+                    old.Categories == null) continue;
+
+                var oldCategories = new HashSet<string>(old.Categories, StringComparer.OrdinalIgnoreCase);
+                if (!oldCategories.SetEquals(app.Categories)) return true;
+            }
+            return false;
         }
 
         /// <summary>

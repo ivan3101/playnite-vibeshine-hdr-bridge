@@ -57,6 +57,23 @@ missing ID, missing snapshot, or invalid category configuration fails closed to
 SDR and emits `--no-hdr`. A last-known-good app snapshot is retained for a host
 that is temporarily offline.
 
+SunshineLibrary displays the host's categories as **tags** on imported client
+games. Seeing `HDR Bridge: HDR` under client Tags is expected. The launch decision
+uses the host category snapshot kept with the stable Playnite ID, not the
+client's visible tag. The host extension applies `Force SDR` before `Force HDR`
+and HDR feature detection, so a Force SDR game has no managed HDR category in
+a fresh snapshot.
+
+During Vibeshine startup, `/api/apps` may be ready before `/api/playnite/games`
+contains a complete Playnite snapshot. The client requests one fresh snapshot
+when Playnite app IDs lack category data. If it is still incomplete, it retains
+the last good cache rather than saving missing categories as SDR. A newly
+configured client with no valid cache still fails closed to SDR until the host
+supplies a complete snapshot.
+When a category list changes, the client also requests a fresh host snapshot
+before replacing its cache. A confirmed category removal takes effect as SDR,
+including when `Force SDR` caused the removal.
+
 ## Moonlight settings
 
 The HDR automation owns only HDR. It does not emit command-line overrides for:

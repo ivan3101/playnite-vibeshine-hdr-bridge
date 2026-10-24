@@ -43,6 +43,67 @@ namespace SunshineLibrary.Tests
         }
 
         [TestMethod]
+        public async Task ListApps_RefreshesEmptyStartupSnapshotBeforeUsingIt()
+        {
+            var handler = new JsonHandler(new Dictionary<string, string>
+            {
+                ["api/apps"] = @"{""apps"":[{""name"":""Game"",""uuid"":""app"",""playnite-id"":""game-id""}]}",
+                ["api/playnite/force_sync"] = @"{""status"":true}",
+            }, new[]
+            {
+                @"[]",
+                @"[{""id"":""game-id"",""name"":""Game"",""installed"":true,""categories"":[""HDR Bridge: HDR""]}]",
+            });
+
+            using (var client = new VibeshineHostClient(Config(), handler))
+            {
+                var result = await client.ListAppsAsync(CancellationToken.None);
+                Assert.IsTrue(result.IsOk);
+                CollectionAssert.Contains(result.Value.Single().Categories, "HDR Bridge: HDR");
+            }
+
+            CollectionAssert.AreEqual(new[]
+            {
+                "api/apps", "api/playnite/games", "api/playnite/force_sync", "api/playnite/games",
+            }, handler.RequestPaths);
+        }
+
+        [TestMethod]
+        public async Task ListApps_IncompleteSnapshotFailsSoCacheIsNotOverwritten()
+        {
+            var handler = new JsonHandler(new Dictionary<string, string>
+            {
+                ["api/apps"] = @"{""apps"":[{""name"":""Game"",""uuid"":""app"",""playnite-id"":""game-id""}]}",
+                ["api/playnite/games"] = @"[]",
+                ["api/playnite/force_sync"] = @"{""status"":false}",
+            });
+
+            using (var client = new VibeshineHostClient(Config(), handler))
+            {
+                var result = await client.ListAppsAsync(CancellationToken.None);
+                Assert.IsFalse(result.IsOk);
+                Assert.AreEqual(HostResultKind.ServerError, result.Kind);
+            }
+        }
+
+        [TestMethod]
+        public async Task ListApps_MissingCategoriesIsNotAnExplicitSdrSnapshot()
+        {
+            var handler = new JsonHandler(new Dictionary<string, string>
+            {
+                ["api/apps"] = @"{""apps"":[{""name"":""Game"",""uuid"":""app"",""playnite-id"":""game-id""}]}",
+                ["api/playnite/games"] = @"[{""id"":""game-id"",""name"":""Game"",""installed"":true}]",
+                ["api/playnite/force_sync"] = @"{""status"":true}",
+            });
+
+            using (var client = new VibeshineHostClient(Config(), handler))
+            {
+                var result = await client.ListAppsAsync(CancellationToken.None);
+                Assert.IsFalse(result.IsOk);
+            }
+        }
+
+        [TestMethod]
         public async Task ListApps_UsesUniqueNameFallbackForOlderPayload()
         {
             var handler = new JsonHandler(new Dictionary<string, string>
@@ -164,12 +225,15 @@ namespace SunshineLibrary.Tests
         private sealed class JsonHandler : HttpMessageHandler
         {
             private readonly IReadOnlyDictionary<string, string> responses;
+            private readonly Queue<string> gameSnapshots;
             public List<string> Authorization { get; } = new List<string>();
             public List<string> RequestPaths { get; } = new List<string>();
 
-            public JsonHandler(IReadOnlyDictionary<string, string> responses)
+            public JsonHandler(IReadOnlyDictionary<string, string> responses,
+                IEnumerable<string> gameSnapshots = null)
             {
                 this.responses = responses;
+                this.gameSnapshots = gameSnapshots == null ? null : new Queue<string>(gameSnapshots);
             }
 
             protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -179,6 +243,13 @@ namespace SunshineLibrary.Tests
                     ? request.RequestUri.PathAndQuery.TrimStart('/')
                     : request.RequestUri.OriginalString.TrimStart('/');
                 RequestPaths.Add(path);
+                if (path == "api/playnite/games" && gameSnapshots != null && gameSnapshots.Count > 0)
+                {
+                    return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+                    {
+                        Content = new StringContent(gameSnapshots.Dequeue(), Encoding.UTF8, "application/json"),
+                    });
+                }
                 if (!responses.TryGetValue(path, out var json))
                     return Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound));
 

@@ -147,6 +147,42 @@ namespace SunshineLibrary.Tests
         }
 
         [TestMethod]
+        public void CategoryRemoval_RequiresFreshHostSnapshotBeforeCacheReplacement()
+        {
+            var previous = new[] { new RemoteApp
+            {
+                StableId = "app-id", PlayniteId = "game-id",
+                Categories = new List<string> { "HDR Bridge: HDR" },
+            } };
+            var current = new[] { new RemoteApp
+            {
+                StableId = "app-id", PlayniteId = "game-id",
+                Categories = new List<string>(),
+            } };
+
+            Assert.IsTrue(SyncService.HasChangedPlayniteCategories(previous, current));
+            Assert.IsFalse(new HdrCategoryService().Resolve(new HdrAutomationOptions(), current[0]).Hdr,
+                "a confirmed category removal, including Force SDR, must launch SDR");
+        }
+
+        [TestMethod]
+        public void UnchangedCategories_DoNotTriggerHostRefresh()
+        {
+            var previous = new[] { new RemoteApp
+            {
+                StableId = "app-id", PlayniteId = "game-id",
+                Categories = new List<string> { "HDR Bridge: HDR", "Action" },
+            } };
+            var current = new[] { new RemoteApp
+            {
+                StableId = "app-id", PlayniteId = "game-id",
+                Categories = new List<string> { "action", "hdr bridge: hdr" },
+            } };
+
+            Assert.IsFalse(SyncService.HasChangedPlayniteCategories(previous, current));
+        }
+
+        [TestMethod]
         public void CleanTags_TrimsDropsBlanksAndDeduplicates()
         {
             var options = new LibraryMetadataOptions
