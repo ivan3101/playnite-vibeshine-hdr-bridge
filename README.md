@@ -110,13 +110,15 @@ cd playnite-vibeshine-hdr-bridge
 The script runs the test suites, builds both extensions, and creates:
 
 ```text
-artifacts/HdrCategorySync_v0.2.0.pext
-artifacts/SunshineLibraryVibeshineHdrBridge_v0.2.0.pext
+artifacts/HdrCategorySync_v0.2.1.pext
+artifacts/SunshineLibraryVibeshineHdrBridge_v0.2.1.pext
 ```
 
 ## Host setup
 
-1. Install `HdrCategorySync_v0.2.0.pext` in the host Playnite.
+1. Install `HdrCategorySync_v0.2.1.pext` in the host Playnite.
+   Existing v0.2.0 host installations do not need an update for the client HDR
+   startup fix.
 2. Confirm Vibeshine's bundled Playnite connector is installed and active.
    Configure Vibeshine to sync all installed games or your normal broad
    inclusion categories; do not use `HDR Bridge: HDR` as the only inclusion
@@ -160,7 +162,7 @@ DPAPI and is never written into normal Playnite plugin settings.
 
 ## Client setup
 
-1. Install `SunshineLibraryVibeshineHdrBridge_v0.2.0.pext` in client Playnite.
+1. Install `SunshineLibraryVibeshineHdrBridge_v0.2.1.pext` in client Playnite.
    It retains SunshineLibrary's extension ID and replaces the upstream build;
    do not install both side by side.
 2. Add the Vibeshine host. Use **Auto-detect** or choose **Vibeshine**, enter the
@@ -208,7 +210,8 @@ GitHub Actions runs the Windows build and test suites on every push and pull
 request. Every successful push to `main` creates a uniquely tagged automated
 prerelease containing both `.pext` packages and a copy of this README. Pull
 requests build and test the project but never publish releases. Versioned stable
-releases such as `v0.2.0` are created separately after validation.
+releases such as `v0.2.1` are published from version tags after the Windows
+build and tests pass.
 
 For architecture, code ownership, migration behavior, security, testing, and
 handoff details, see [`docs/HANDOFF.md`](docs/HANDOFF.md). The reviewed refactor

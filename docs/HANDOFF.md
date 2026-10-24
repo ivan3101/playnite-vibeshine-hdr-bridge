@@ -19,8 +19,8 @@ HDR-Auto. HDR-Auto remains independent for local host launches.
 
 | Package | Machine | Responsibility |
 |---|---|---|
-| `HdrCategorySync_v0.2.0.pext` | host | Classify games and maintain the managed HDR category |
-| `SunshineLibraryVibeshineHdrBridge_v0.2.0.pext` | client | Import apps, resolve HDR, control Windows HDR, launch Moonlight |
+| `HdrCategorySync_v0.2.1.pext` | host | Classify games and maintain the managed HDR category |
+| `SunshineLibraryVibeshineHdrBridge_v0.2.1.pext` | client | Import apps, resolve HDR, control Windows HDR, launch Moonlight |
 
 The host package retains extension ID
 `HdrMetadataExporter_8ec69983-0a95-4e65-9af4-459eb24c7547`; the source directory

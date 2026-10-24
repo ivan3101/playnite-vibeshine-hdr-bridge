@@ -43,10 +43,10 @@ try {
 
     New-PlaynitePackage `
         -BuildDirectory "src/HdrMetadataExporter/bin/Release/net462" `
-        -PackageName "HdrCategorySync_v0.2.0"
+        -PackageName "HdrCategorySync_v0.2.1"
     New-PlaynitePackage `
         -BuildDirectory "src/SunshineLibrary.HdrBridge/bin/Release/net462" `
-        -PackageName "SunshineLibraryVibeshineHdrBridge_v0.2.0"
+        -PackageName "SunshineLibraryVibeshineHdrBridge_v0.2.1"
 
     Write-Host "Packages created in $artifacts"
 }

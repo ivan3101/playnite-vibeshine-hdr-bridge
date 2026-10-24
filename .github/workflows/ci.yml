@@ -53,3 +53,19 @@ jobs:
             --title $title `
             --notes-file README.md `
             --prerelease
+
+      - name: Create versioned release
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = $env:GITHUB_REF_NAME
+          $assets = Get-ChildItem artifacts -File | ForEach-Object { $_.FullName }
+          $notes = "docs/RELEASE_NOTES_$tag.md"
+          if (-not (Test-Path $notes)) { $notes = "README.md" }
+          gh release create $tag @assets `
+            --repo $env:GITHUB_REPOSITORY `
+            --target $env:GITHUB_SHA `
+            --title "Playnite Vibeshine HDR Bridge $tag" `
+            --notes-file $notes
